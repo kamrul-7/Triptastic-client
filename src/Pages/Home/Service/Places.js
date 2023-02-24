@@ -57,7 +57,7 @@ const Places = () => {
                     })
                 }
             </div>
-            <Link to='/AllPlaces'><button className='btn btn-accent mt-8 px-12 flex mx-auto'>Show  More</button></Link>
+            <Link to='/AllPlaces'><Button className='my-8 pb-8 px-12 flex text-lg mx-auto' type="primary" danger>Show  More</Button></Link>
         </div>
     );
 };
