@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { BsPerson } from 'react-icons/bs';
 import { BiSearch } from 'react-icons/bi';
 import { AiOutlineClose } from 'react-icons/ai';
 import { Button, Space } from 'antd';
 import { HiOutlineMenu } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
 const NavBar = () => {
+    const { user, logOut } = useContext(AuthContext);
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.log(error));
+    }
     const [nav, setNav] = useState(false);
     const [logo, setLogo] = useState(false);
     const handleNav = () => {
@@ -24,11 +31,17 @@ const NavBar = () => {
                 <li>View</li>
                 <li>Book</li>
                 <li>About Us</li>
+                <li><BiSearch className='mr-3' size={20}></BiSearch></li>
+                {user?.uid ?
+                    <>
+                        <li><Link to="/">My Review</Link></li>
+                        <li><button onClick={handleLogOut}>Sign out</button></li>
+                    </>
+                    : <li><Link to='/login'><a>Login</a></Link></li>
+                }
+
+
             </ul>
-            <div className='flex'>
-                <BiSearch className='mr-3' size={20}></BiSearch>
-                <BsPerson size={20}></BsPerson>
-            </div>
             <div onClick={handleNav} className='md:hidden z-10'>
                 {nav ? <AiOutlineClose className='text-black' size={20} /> : <HiOutlineMenu size={20} />}
             </div>

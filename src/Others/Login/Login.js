@@ -1,8 +1,25 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input } from 'antd';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 const Login = () => {
+    const { signIn } = useContext(AuthContext);
+    const [loginError, setLoginError] = useState('');
+    const [loginUserEmail, setLoginUserEmail] = useState('');
     const onFinish = (values) => {
         console.log('Received values of form: ', values);
+
+        signIn(values.email, values.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                setLoginUserEmail(values.email);
+            })
+            .catch(error => {
+                console.log(error.message)
+                setLoginError(error.message);
+            });
+
     };
     return (
         <div className='py-56 w-96 mx-auto'>
@@ -15,15 +32,15 @@ const Login = () => {
                 onFinish={onFinish}
             >
                 <Form.Item
-                    name="username"
+                    name="email"
                     rules={[
                         {
                             required: true,
-                            message: 'Please input your Username!',
+                            message: 'Please input your email!',
                         },
                     ]}
                 >
-                    <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+                    <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="email" />
                 </Form.Item>
                 <Form.Item
                     name="password"
@@ -57,8 +74,11 @@ const Login = () => {
 
                     Or
                     <a href="/signIn" className='text-blue-300 ml-8'>register now!</a>
+
                 </Form.Item>
+
             </Form>
+
         </div>
     );
 };

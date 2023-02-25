@@ -1,6 +1,10 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input, Rate, Upload } from 'antd';
 import { InboxOutlined, UploadOutlined } from '@ant-design/icons';
+import { useContext } from 'react';
+import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
+import Password from 'antd/es/input/Password';
+import { toast } from 'react-hot-toast';
 const normFile = (e: any) => {
     console.log('Upload event:', e);
     if (Array.isArray(e)) {
@@ -13,9 +17,26 @@ const onFinish = (values: any) => {
 };
 
 const SignIn = () => {
+
+    const { createUser } = useContext(AuthContext);
+
     const onFinish = (values) => {
         console.log('Received values of form: ', values);
-    };
+
+        createUser(values.email, values.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                toast.success('User Created Successfully.')
+
+                    .catch(err => console.log(err));
+            })
+            .catch(error => {
+                console.log(error)
+
+            });
+    }
+
     return (
         <div className='lg:py-56 py-32 w-72 lg:w-96 mx-auto'>
             <Form
