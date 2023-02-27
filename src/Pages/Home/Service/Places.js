@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
-import { Button, Card } from 'antd';
+import { Button, Card, Rate } from 'antd';
 import AllPlaces from './AllPlaces';
 
 const { Meta } = Card;
@@ -14,7 +14,6 @@ const Places = () => {
             .then(res => res.json())
             .then(data => setServices(data))
     }, []);
-    let count = 0;
     return (
         <div>
             <div className='text-center mb-4'>
@@ -23,10 +22,9 @@ const Places = () => {
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
                 {
-                    services?.map((service) => {
-                        count = count + 1;
-                        if (count <= 3) {
-                            return (<div className='flex mx-auto my-4'>
+                    services.slice(Math.max(services.length - 3, 0)).map((service) => {
+                        return (
+                            <div className='flex mx-auto my-4'>
                                 <Card
                                     hoverable
                                     style={{ width: 350 }}
@@ -37,7 +35,10 @@ const Places = () => {
                                     </PhotoProvider>}
                                 >
                                     <Meta title={service?.Name} />
-                                    <h2 className='text-2xl text-yellow-400 font-semibold'>{service?.rating}</h2>
+                                    <div className="flex justify-between">
+                                        <Rate style={{ width: '5px' }} value={service?.rating} />
+                                        <h2 className="text-yellow-500 text-lg font-bold mt-4">{service?.rating}</h2>
+                                    </div>
                                     <p className='text-2xl text-orange-600 font-semibold'>Price: ${service?.price}</p>
                                     {
                                         service?.description.length > 100 ?
@@ -52,8 +53,8 @@ const Places = () => {
                                     </div>
                                 </Card>
 
-                            </div>)
-                        }
+                            </div>
+                        );
                     })
                 }
             </div>

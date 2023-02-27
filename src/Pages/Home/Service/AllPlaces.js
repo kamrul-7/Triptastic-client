@@ -1,11 +1,16 @@
-import { Button, Card } from "antd";
+import { StarOutlined } from "@ant-design/icons";
+import { Button, Card, Rate } from "antd";
 import Meta from "antd/es/card/Meta";
-import { AiOutlineSearch } from "react-icons/ai";
-import { PhotoProvider, PhotoView } from "react-photo-view";
-import { Form, Link, useLoaderData } from "react-router-dom";
 
+import React from "react";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import Rating from "react-rating";
+
+import { Link, useLoaderData } from "react-router-dom";
 
 const AllPlaces = () => {
+
+
     const services = useLoaderData()
     return (
         <div>
@@ -25,7 +30,15 @@ const AllPlaces = () => {
                             </PhotoProvider>}
                         >
                             <Meta title={service?.Name} />
-                            <h2 className='text-2xl text-yellow-400 font-semibold'>{service?.rating}</h2>
+
+
+                            <div className="flex justify-between">
+                                <Rate className="-mr-4" value={service.rating} />
+                                <h2 className="text-yellow-500 text-lg font-bold">{service.rating}</h2>
+                            </div>
+
+
+
                             <p className='text-2xl text-orange-600 font-semibold'>Price: ${service?.price}</p>
                             {
                                 service?.description.length > 100 ?

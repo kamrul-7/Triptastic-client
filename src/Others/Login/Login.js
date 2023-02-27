@@ -1,23 +1,32 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input } from 'antd';
 import { useContext, useState } from 'react';
+import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 const Login = () => {
     const { signIn } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
+    const navigate = useNavigate();
     const [loginUserEmail, setLoginUserEmail] = useState('');
+
+
+
     const onFinish = (values) => {
         console.log('Received values of form: ', values);
 
         signIn(values.email, values.password)
             .then(result => {
                 const user = result.user;
+                toast.success('User Login Successful')
                 console.log(user);
+                navigate('/')
                 setLoginUserEmail(values.email);
             })
             .catch(error => {
                 console.log(error.message)
                 setLoginError(error.message);
+
             });
 
     };

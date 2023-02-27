@@ -1,10 +1,11 @@
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { LinkOutlined, LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input, Rate, Upload } from 'antd';
 import { InboxOutlined, UploadOutlined } from '@ant-design/icons';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import Password from 'antd/es/input/Password';
 import { toast } from 'react-hot-toast';
+import { useLocation, useNavigate } from 'react-router-dom';
 const normFile = (e: any) => {
     console.log('Upload event:', e);
     if (Array.isArray(e)) {
@@ -18,7 +19,15 @@ const onFinish = (values: any) => {
 
 const SignIn = () => {
 
-    const { createUser } = useContext(AuthContext);
+    const [error, setError] = useState('');
+    const { createUser, updateUserProfile } = useContext(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate();
+
+
+
+    const from = location.state?.from?.pathname || '/';
+
 
     const onFinish = (values) => {
         console.log('Received values of form: ', values);
@@ -27,20 +36,32 @@ const SignIn = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                toast.success('User Created Successfully.')
-
-                    .catch(err => console.log(err));
+                setError('');
+                handleUpdateUserProfile(values.name, values.photoURL);
+                toast.success('Please verify your email address.')
             })
-            .catch(error => {
-                console.log(error)
-
+            .catch(e => {
+                console.error(e);
+                setError(e.message);
             });
     }
+
+    const handleUpdateUserProfile = (name, photoURL) => {
+        const profile = {
+            displayName: name,
+            photoURL: photoURL
+        }
+
+        updateUserProfile(profile)
+            .then(() => { })
+            .catch(error => console.error(error));
+    }
+
 
     return (
         <div className='lg:py-56 py-32 w-72 lg:w-96 mx-auto'>
             <Form
-                name="normal_login"
+                name="name"
                 className="login-form"
                 initialValues={{
                     remember: true,
@@ -49,7 +70,7 @@ const SignIn = () => {
             >
 
                 <Form.Item
-                    name="username"
+                    name="name"
                     rules={[
                         {
                             required: true,
@@ -121,10 +142,15 @@ const SignIn = () => {
                 </Form.Item>
 
                 <Form.Item
+                    name="photoURL"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input your Photo URL!',
+                        },
+                    ]}
                 >
-                    <Upload name="logo" className='border-white' action="/upload.do" listType="picture">
-                        <Button type="primary" className='btn-outline' icon={<UploadOutlined />}>Click to upload</Button>
-                    </Upload>
+                    <Input prefix={<LinkOutlined className="site-form-item-icon" />} placeholder="Please input your Photo URL!" />
                 </Form.Item>
 
                 <Form.Item>
@@ -142,6 +168,7 @@ const SignIn = () => {
                     <a href="/login" className='text-blue-300 ml-8 font-bold'>Login Now!</a>
                 </Form.Item>
             </Form>
+
         </div>
     );
 };
