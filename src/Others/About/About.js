@@ -5,7 +5,7 @@ import React from 'react';
 const About = () => {
     return (
         <div>
-            <div className='flex justify-around lg:pt-32 lg:mx-12 mb-12 m-12'>
+            <div className='flex justify-around lg:pt-32 lg:mx-12 mb-12 mx-12'>
                 <div className='lg:p-24 bg-white rounded-md'>
                     <div className='text-5xl text-red-700 flex justify-center'>
                         <PhoneOutlined />

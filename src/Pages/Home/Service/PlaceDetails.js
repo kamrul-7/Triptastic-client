@@ -7,6 +7,7 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { Link, useLoaderData } from 'react-router-dom';
 import { Rate } from 'antd';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
+import Comment from '../../../Others/Comment/Comment';
 const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
 const { TextArea } = Input;
 const PlaceDetails = () => {
@@ -40,21 +41,11 @@ const PlaceDetails = () => {
 
 
             <div>
-                <div>
+                <div className='mt-12'>
                     <h3 className='text-center text-red-500 text-2xl '>Review</h3>
                 </div>
-                <span className='ml-24'>
-                    <Rate tooltips={desc} onChange={setValue} value={value} />
-                    {value ? <span className="ant-rate-text">{desc[value - 1]}</span> : ''}
-                </span>
-                <div>
-                    <h2 className='ml-24'>{user?.email}</h2>
-                    <h2 className='ml-24'>{user?.displayName}</h2>
-
-                </div>
-                <div className='flex justify-center'>
-                    <input className='h-24 w-96 rounded-md bg-white mx-24 pl-4' placeholder='Enter your comment..' type="text" />
-                    <button className='btn btn-info -ml-12 mt-4'>Submit</button>
+                <div className='flex justify-center mt-12'>
+                    <Comment></Comment>
                 </div>
             </div>
 

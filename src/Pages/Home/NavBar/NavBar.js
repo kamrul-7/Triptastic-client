@@ -43,7 +43,7 @@ const NavBar = () => {
                     user?.uid ?
                         <>
                             <li><Link to="/addService">Add Service</Link></li>
-                            <li><Link to="/">My Review</Link></li>
+                            <li><Link to="/review">My Review</Link></li>
                             <div className='mt-4'>
                                 <span className={hover ? '' : 'hidden'}>{user?.displayName}</span>
                             </div>
@@ -51,8 +51,8 @@ const NavBar = () => {
                         </>
                         :
                         <>
-                            <Link className='ml-4' to='/login'>Login</Link>
-                            <Link className='ml-4' to='/register'>Register</Link>
+                            <Link className='ml-4 mt-4' to='/login'>Login</Link>
+                            <Link className='ml-4 mt-4' to='/signIn'>Register</Link>
                         </>
                 }
 
@@ -67,7 +67,7 @@ const NavBar = () => {
 
                     />
 
-                    : <AiFillPauseCircle className='mt-3  ml-6'></AiFillPauseCircle>
+                    : <></>
                 }
 
 

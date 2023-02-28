@@ -35,8 +35,8 @@ const Places = () => {
                                     </PhotoProvider>}
                                 >
                                     <Meta title={service?.Name} />
-                                    <div className="flex justify-between">
-                                        <Rate style={{ width: '5px' }} value={service?.rating} />
+                                    <div>
+                                        <Rate value={service?.rating} />
                                         <h2 className="text-yellow-500 text-lg font-bold mt-4">{service?.rating}</h2>
                                     </div>
                                     <p className='text-2xl text-orange-600 font-semibold'>Price: ${service?.price}</p>
