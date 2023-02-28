@@ -8,6 +8,7 @@ import { Link, useLoaderData } from 'react-router-dom';
 import { Rate } from 'antd';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import Comment from '../../../Others/Comment/Comment';
+import ShowAllComments from '../../../Others/Comment/ShowAllComments';
 const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
 const { TextArea } = Input;
 const PlaceDetails = () => {
@@ -45,6 +46,7 @@ const PlaceDetails = () => {
                     <h3 className='text-center text-red-500 text-2xl '>Review</h3>
                 </div>
                 <div className='flex justify-center mt-12'>
+                    <ShowAllComments></ShowAllComments>
                     <Comment></Comment>
                 </div>
             </div>

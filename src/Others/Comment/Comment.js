@@ -27,7 +27,7 @@ const Comment = () => {
         console.log(comment);
 
 
-        fetch('http://localhost:5000/comment', {
+        fetch('https://music-album-pearl.vercel.app/comment', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

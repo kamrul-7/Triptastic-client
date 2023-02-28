@@ -22,7 +22,7 @@ const AddService = () => {
         }
         console.log(service)
 
-        fetch('http://localhost:5000/place', {
+        fetch('https://music-album-pearl.vercel.app/place', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

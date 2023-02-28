@@ -5,7 +5,7 @@ const Review = () => {
     const [comment, setComment] = useState([]);
     const { user } = useContext(AuthContext)
     useEffect(() => {
-        fetch(`http://localhost:5000/comment?email=${user?.email}`)
+        fetch(`https://music-album-pearl.vercel.app/comment?email=${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 // sort data in reverse order

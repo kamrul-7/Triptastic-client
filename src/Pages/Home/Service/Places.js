@@ -10,7 +10,7 @@ const { Meta } = Card;
 const Places = () => {
     const [services, setServices] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/place')
+        fetch('https://music-album-pearl.vercel.app/place')
             .then(res => res.json())
             .then(data => setServices(data))
     }, []);

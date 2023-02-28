@@ -35,10 +35,9 @@ const NavBar = () => {
             </div>
             <ul className='hidden md:flex'>
                 <li><Link to='/AllPlaces'>Destination </Link></li>
-                <li><Link>Travel</Link></li>
                 <li><Link to='/blog'>Blog</Link></li>
                 <li><Link to='/about'>About Us</Link></li>
-                <li><BiSearch className='mr-3' size={20}></BiSearch></li>
+
                 {
                     user?.uid ?
                         <>
@@ -69,7 +68,7 @@ const NavBar = () => {
 
                     : <></>
                 }
-
+                <li><BiSearch className='mr-3' size={20}></BiSearch></li>
 
 
             </ul>
@@ -80,14 +79,12 @@ const NavBar = () => {
                 <ul>
                     <Link to='/'>Triptastic </Link>
                     <li><Link to='/AllPlaces'>Destination </Link></li>
-                    <li className='border-b'>Travel</li>
-                    <li className='border-b'>View</li>
                     <li><Link to='/blog'>Blog</Link></li>
                     <li><Link to='/about'>About Us</Link></li>
                     {user?.uid ?
                         <>
                             <li><Link to="/addService">Add Service</Link></li>
-                            <li><Link to="/">My Review</Link></li>
+                            <li><Link to="/review">My Review</Link></li>
                             <li><button onClick={handleLogOut}>Sign out</button></li>
                         </>
                         : <li><Link to='/login'><a>Login</a></Link></li>

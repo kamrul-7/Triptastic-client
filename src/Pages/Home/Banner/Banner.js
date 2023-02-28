@@ -15,7 +15,7 @@ const Banner = () => {
                             <input className='bg-transparent w-[300px] sm:w-[400px] font-[poppins] focus:outline-none' type="text" placeholder='Search Destination' />
                         </div>
                         <div>
-                            <button><AiOutlineSearch size={20} className='icon'></AiOutlineSearch> </button>
+                            <button className='pt-2'><AiOutlineSearch size={20} className='icon'></AiOutlineSearch> </button>
                         </div>
                     </Form>
                 </div>

@@ -47,12 +47,12 @@ const router = createBrowserRouter([
             {
                 path: '/AllPlaces',
                 element: <PrivateRoute><AllPlaces></AllPlaces></PrivateRoute>,
-                loader: () => fetch('http://localhost:5000/place')
+                loader: () => fetch('https://music-album-pearl.vercel.app/place')
             },
             {
                 path: '/details/:id',
                 element: <PrivateRoute> <PlaceDetails></PlaceDetails></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/place/${params.id}`)
+                loader: ({ params }) => fetch(`https://music-album-pearl.vercel.app/place/${params.id}`)
 
             }
         ]
