@@ -52,6 +52,7 @@ const Comment = () => {
 
     return (
         <div>
+
             <form onSubmit={handleComment} className='grid grid-cols-1 gap-3 mt-10'>
                 <input name="name" type="text" defaultValue={user?.displayName} disabled placeholder="Your Name" className="input w-full bg-white" />
                 <input name="email" type="email" defaultValue={user?.email} disabled placeholder="Email Address" className="input w-full  bg-white" />

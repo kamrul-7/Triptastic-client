@@ -59,116 +59,125 @@ const SignIn = () => {
 
 
     return (
-        <div className='lg:py-56 py-32 w-72 lg:w-96 mx-auto'>
-            <Form
-                name="name"
-                className="login-form"
-                initialValues={{
-                    remember: true,
-                }}
-                onFinish={onFinish}
-            >
 
-                <Form.Item
+        <div>
+            <div className='mb-20 h-20 bg-black'>
+            </div>
+            <div className='text-4xl font-bold text-center mt-12'>
+                <h3>Register</h3>
+            </div>
+
+            <div className='lg:py-20 py-32 w-72 lg:w-96 mx-auto'>
+                <Form
                     name="name"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please input your Username!',
-                        },
-                    ]}
-                >
-                    <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
-                </Form.Item>
-                <Form.Item
-                    name="email"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please input your email address!',
-                        },
-                    ]}
-                >
-                    <Input prefix={<emailOutlined className="site-form-item-icon" />} placeholder="Email" />
-                </Form.Item>
-
-
-                <Form.Item
-                    name="password"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please input your password!',
-                        },
-                    ]}
-                    hasFeedback
+                    className="login-form"
+                    initialValues={{
+                        remember: true,
+                    }}
+                    onFinish={onFinish}
                 >
 
-                    <Input
-                        prefix={<LockOutlined className="site-form-item-icon" />}
-                        type="password"
-                        placeholder="Password"
-                    />
-                </Form.Item>
-
-
-
-                <Form.Item
-                    name="confirm"
-                    dependencies={['password']}
-                    hasFeedback
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please confirm your password!',
-                        },
-                        ({ getFieldValue }) => ({
-                            validator(_, value) {
-                                if (!value || getFieldValue('password') === value) {
-                                    return Promise.resolve();
-                                }
-                                return Promise.reject(new Error('The two passwords that you entered do not match!'));
+                    <Form.Item
+                        name="name"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input your Username!',
                             },
-                        }),
-                    ]}
-
-                >
-
-                    <Input
-                        prefix={<LockOutlined className="site-form-item-icon" />}
-                        type="password"
-                        placeholder="Confirm Password"
-                    />
-                </Form.Item>
-
-                <Form.Item
-                    name="photoURL"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please input your Photo URL!',
-                        },
-                    ]}
-                >
-                    <Input prefix={<LinkOutlined className="site-form-item-icon" />} placeholder="Please input your Photo URL!" />
-                </Form.Item>
-
-                <Form.Item>
-                    <Form.Item name="remember" valuePropName="checked" noStyle>
-                        <Checkbox className='text-white'>Remember me</Checkbox>
+                        ]}
+                    >
+                        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
                     </Form.Item>
-                </Form.Item>
+                    <Form.Item
+                        name="email"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input your email address!',
+                            },
+                        ]}
+                    >
+                        <Input prefix={<emailOutlined className="site-form-item-icon" />} placeholder="Email" />
+                    </Form.Item>
 
-                <Form.Item className='text-white'>
-                    <Button type="primary" danger htmlType="submit" className="login-form-button mr-8">
-                        Register
-                    </Button>
 
-                    Or
-                    <a href="/login" className='text-blue-300 ml-8 font-bold'>Login Now!</a>
-                </Form.Item>
-            </Form>
+                    <Form.Item
+                        name="password"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input your password!',
+                            },
+                        ]}
+                        hasFeedback
+                    >
 
+                        <Input
+                            prefix={<LockOutlined className="site-form-item-icon" />}
+                            type="password"
+                            placeholder="Password"
+                        />
+                    </Form.Item>
+
+
+
+                    <Form.Item
+                        name="confirm"
+                        dependencies={['password']}
+                        hasFeedback
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please confirm your password!',
+                            },
+                            ({ getFieldValue }) => ({
+                                validator(_, value) {
+                                    if (!value || getFieldValue('password') === value) {
+                                        return Promise.resolve();
+                                    }
+                                    return Promise.reject(new Error('The two passwords that you entered do not match!'));
+                                },
+                            }),
+                        ]}
+
+                    >
+
+                        <Input
+                            prefix={<LockOutlined className="site-form-item-icon" />}
+                            type="password"
+                            placeholder="Confirm Password"
+                        />
+                    </Form.Item>
+
+                    <Form.Item
+                        name="photoURL"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input your Photo URL!',
+                            },
+                        ]}
+                    >
+                        <Input prefix={<LinkOutlined className="site-form-item-icon" />} placeholder="Please input your Photo URL!" />
+                    </Form.Item>
+
+                    <Form.Item>
+                        <Form.Item name="remember" valuePropName="checked" noStyle>
+                            <Checkbox className='text-white'>Remember me</Checkbox>
+                        </Form.Item>
+                    </Form.Item>
+
+                    <Form.Item className='text-white'>
+                        <Button type="primary" danger htmlType="submit" className="login-form-button mr-8">
+                            Register
+                        </Button>
+
+                        <span className='text-black'> Or</span>
+                        <a href="/login" className='text-blue-600 ml-8 font-bold'>Login Now!</a>
+                    </Form.Item>
+                </Form>
+
+            </div>
         </div>
     );
 };

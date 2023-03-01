@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { motion, useScroll } from "framer-motion"
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 import { Button, Card, Rate } from 'antd';
-import AllPlaces from './AllPlaces';
+import { AiFillStar } from 'react-icons/ai';
 
 const { Meta } = Card;
 
@@ -17,14 +18,23 @@ const Places = () => {
     return (
         <div>
             <div className='text-center mb-4'>
-                <h2 className="lg:text-4xl text-2xl font-semibold text-gray-400 hover:text-green-500 my-8">Our Service Area</h2>
+                <h2 className="lg:text-4xl text-2xl font-semibold text-blue-400 hover:text-green-500 my-8">Our Service Area</h2>
 
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
                 {
                     services.slice(Math.max(services.length - 3, 0)).map((service) => {
                         return (
-                            <div className='flex mx-auto my-4'>
+                            <motion.div
+                                className='flex mx-auto my-4'
+                                animate={{
+                                    scale: .95,
+                                    transition: {
+                                        duration: 1,
+                                    }
+                                }}
+                            >
+
                                 <Card
                                     hoverable
                                     style={{ width: 350 }}
@@ -34,26 +44,34 @@ const Places = () => {
                                         </PhotoView>
                                     </PhotoProvider>}
                                 >
-                                    <Meta title={service?.Name} />
-                                    <div>
-                                        <Rate value={service?.rating} />
-                                        <h2 className="text-yellow-500 text-lg font-bold mt-4">{service?.rating}</h2>
-                                    </div>
-                                    <p className='text-2xl text-orange-600 font-semibold'>Price: ${service?.price}</p>
+                                    <h1 className='text-2xl text-orange-600 mb-4'>v{service?.Name} </h1>
+
                                     {
                                         service?.description.length > 100 ?
                                             <>{service?.description.slice(0, 100) + '...'}  </>
                                             :
                                             service?.description
                                     }
-                                    <div className="card-actions justify-end">
-                                        <Link to={`/details/${service._id}`}>
-                                            <Button className='mr-4 mb-4 px-8 text-lg pb-8' type="primary" danger>Details</Button>
-                                        </Link>
+                                    <div className="flex justify-between mt-8">
+                                        <div className="flex justify-between items-center">
+                                            <div className='flex'>
+                                                <AiFillStar className='text-yellow-400'></AiFillStar>
+                                                <AiFillStar className='text-yellow-400'></AiFillStar>
+                                                <AiFillStar className='text-yellow-400'></AiFillStar>
+                                                <AiFillStar className='text-yellow-400'></AiFillStar>
+                                                <AiFillStar ></AiFillStar>
+                                            </div>
+
+                                        </div>
+                                        <p className='text-xl font-semibold'>Price: ${service?.price}</p>
+
                                     </div>
+                                    <Link to={`/details/${service._id}`}>
+                                        <Button className='mr-4 px-8 text-lg pb-8 mt-8 ml-44' type="primary" danger>Details</Button>
+                                    </Link>
                                 </Card>
 
-                            </div>
+                            </motion.div>
                         );
                     })
                 }
