@@ -20,6 +20,17 @@ const About = () => {
                     <h2 className='text-black mt-4 text-xl'>Kamrul7.khan@gmail.com</h2>
                 </div>
             </div>
+
+
+            <div>
+
+                <iframe
+                    title='Meddical'
+                    className='w-full h-96 mx-auto px-16 mb-8'
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7300.888371851632!2d90.3636722!3d23.802799!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c12cd2f41ad5%3A0xd4eb5975120eaff0!2sMirpur%2010%20Bus%20Stand!5e0!3m2!1sen!2sbd!4v1658586728053!5m2!1sen!2sbd"
+                    allowfullscreen=''
+                    loading='lazy'></iframe>
+            </div>
             <div className='text-center bg-rose-300 pt-20 pb-12 mx-16'>
                 <div className='text-white '>
                     <h4 className='text-xl font-bold text-primary my-6'>Contact Us</h4>

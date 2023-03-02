@@ -16,7 +16,7 @@ const AllPlaces = () => {
 
     useEffect(() => {
         const fetchServices = async () => {
-            const response = await fetch(`https://music-album-pearl.vercel.app/place?search=${search}`);
+            const response = await fetch(`https://music-album-kamrul-7.vercel.app/place?search=${search}`);
             const data = await response.json();
             setServices(data);
             setIsFetching(false);
@@ -36,7 +36,7 @@ const AllPlaces = () => {
     return (
         <div>
             <div className="h-20 bg-black"></div>
-            <div className="mt-8 w-96 mx-auto flex gap-3 pt-6">
+            <div className="mt-8 lg:w-96 ml-4 lg:mx-auto flex gap-3 pt-6">
                 <input className='border-solid border-2 border-indigo-600 rounded-md px-4' ref={searchRef} type="text" />
                 <Button onClick={handleSearch} danger>Search</Button>
             </div>
